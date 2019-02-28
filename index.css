@@ -1,0 +1,40 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+main{
+	text-align: center;
+}
+#mainxxxx{
+	display: inline-block;
+	vertical-align: center;
+}
+#mainxxxx > div kbd{
+	border: 1px solid black;
+	height: 50px;
+	width: 50px;
+	display: inline-block;
+	text-transform: uppercase;
+}
+#mainxxxx>div:nth-child(2){
+	margin-left: 1em;
+}
+#mainxxxx>div:nth-child(3){
+	margin-left: 3em;
+}
+#mainxxxx>div kbd button{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	font-size: 12px;
+	display: none;
+}
+#mainxxxx>div kbd{
+	position: relative;
+}
+#mainxxxx>div kbd:hover button{
+	display: inline-block;
+}

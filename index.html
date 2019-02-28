@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的导航</title>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<header></header>
+	<main>
+		<div id="mainxxxx"></div>
+	</main>
+	<footer></footer>
+</body>
+<script>
+	var keys = {
+	 	'0': {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length: 10},
+	 	'1': {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+	 	'2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
+	 	'length': 3
+	}
+	var hash = {'q': 'qq.com', 'w': 'weibo.com', 't': 'taobao.com', 'b': 'bilibili.com', 'z': 'zhihu.com', 'h': 'hupu.com', 'length': 26 }
+	//取出localStorage中的uuu对应的hash
+	var hashInLocalStorage = JSON.parse(localStorage.getItem('uuu') || 'null')
+	if(hashInLocalStorage){
+		hash = hashInLocalStorage
+	}
+	var index = 0;
+	 	while(index < keys.length){
+	 	div1 = document.createElement('div');
+	 	mainxxxx.appendChild(div1);
+	 	index2 = 0;//内层的循环变量
+	 	var row = keys[index]
+	 	while(index2 < row['length']){
+	 		//循环次数是每一行的length，分别是10 9 7
+	 		//每次生成一个kkd
+	 		kbd = document.createElement('kbd')
+	 		kbd.textContent = row[index2];//每个kbd的内容里都是对应的字母
+	 		div1.appendChild(kbd);//生成kbd之后马上放到div里面去
+	 		buttonX = document.createElement('button')//生成一个button
+	 		kbd.appendChild(buttonX)//每个kbd里面都有一个button
+	 		buttonX.textContent = '编辑'
+	 		buttonX.id =  row[index2]//给每个button都起一个对应的id
+	 		buttonX.onclick = function(clickEvent){//点击对应的编辑按钮就可以编辑对应的网址,clickevent是可以随便取的名字
+	 			webside = prompt('请输入一个网址')
+	 			buttonID = clickEvent.target.id//注意如果是button.id这是只会得到最后一个字母m的id,这是因为在循环当中,buttonX仅仅只是一个容器
+	 			//因此使用target.id可以获取对应编辑按钮的id,即qwert
+	 			hash[buttonID] = webside//修改对应button的id的哈希表
+	 			localStorage.setItem('uuu',JSON.stringify(hash))//uuu是随便取的名字，它只能存字符串，因此要把hash转换为字符串
+	 		}
+	 		index2 +=1;
+	 	}
+	 	index = index + 1;
+		}
+	
+
+	//监听用户按键
+	document.onkeypress = function(xxx){
+		key = xxx['key']
+		webside = hash[key]
+		window.open('http://'+webside,'_blank')//如果使用的是location.href也能输入新网址,但是是在当前窗口打开,而window.open是在新窗口打开
+	}
+
+	//使用localStorage来存储数据
+
+</script>
+</html>
