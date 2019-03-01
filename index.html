@@ -19,7 +19,7 @@
 	 	'2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
 	 	'length': 3
 	}
-	var hash = {'q': 'qq.com', 'w': 'weibo.com', 't': 'taobao.com', 'b': 'bilibili.com', 'z': 'zhihu.com', 'h': 'hupu.com', 'length': 26 }
+	var hash = {'a': 'acfun.cn','q': 'qq.com', 'w': 'weibo.com', 't': 'taobao.com', 'b': 'bilibili.com', 'z': 'zhihu.com', 'h': 'hupu.com','d': 'douban.com','y': 'youtube.com','j': 'jianshu.com','length': 26 }
 	//取出localStorage中的uuu对应的hash
 	var hashInLocalStorage = JSON.parse(localStorage.getItem('uuu') || 'null')
 	if(hashInLocalStorage){
@@ -28,16 +28,19 @@
 	var index = 0;
 	 	while(index < keys.length){
 	 	div1 = document.createElement('div');
+	 	div1.className = 'row';
 	 	mainxxxx.appendChild(div1);
 	 	index2 = 0;//内层的循环变量
 	 	var row = keys[index]
 	 	while(index2 < row['length']){
 	 		//循环次数是每一行的length，分别是10 9 7
 	 		//每次生成一个kkd
-	 		kbd = document.createElement('kbd')
+	 		var kbd = document.createElement('kbd')
 	 		kbd.textContent = row[index2];//每个kbd的内容里都是对应的字母
 	 		div1.appendChild(kbd);//生成kbd之后马上放到div里面去
-	 		buttonX = document.createElement('button')//生成一个button
+	 		kbd.className = 'key'; //给每一个kbd增加一个class
+
+	 		var buttonX = document.createElement('button')//生成一个button
 	 		kbd.appendChild(buttonX)//每个kbd里面都有一个button
 	 		buttonX.textContent = '编辑'
 	 		buttonX.id =  row[index2]//给每个button都起一个对应的id
@@ -47,7 +50,21 @@
 	 			//因此使用target.id可以获取对应编辑按钮的id,即qwert
 	 			hash[buttonID] = webside//修改对应button的id的哈希表
 	 			localStorage.setItem('uuu',JSON.stringify(hash))//uuu是随便取的名字，它只能存字符串，因此要把hash转换为字符串
+
+	 			var img = clickEvent.target.nextSibling	 
+	 			if(hash[buttonID]){
+	 				img.src = 'http://' + hash[buttonID] + '/favicon.ico'
+	 			}else{
+	 				img.src = 'https://i.loli.net/2019/03/01/5c7942239926f.jpg'
+	 			}			
+ 				img.onerror = function(imgError){
+ 					imgError.target.src = 'https://i.loli.net/2019/03/01/5c7942239926f.jpg'
+ 				}
+ 				
 	 		}
+
+	 		generateIcon(buttonX.id)//生成图标
+
 	 		index2 +=1;
 	 	}
 	 	index = index + 1;
@@ -59,6 +76,23 @@
 		key = xxx['key']
 		webside = hash[key]
 		window.open('http://'+webside,'_blank')//如果使用的是location.href也能输入新网址,但是是在当前窗口打开,而window.open是在新窗口打开
+	}
+
+	function generateIcon(hashKey){
+		var img = document.createElement('img')
+ 		kbd.appendChild(img)
+ 		var key = hashKey
+ 		var website = hash[key]		
+ 		if(website){
+ 			img.src = 'http://' + website + '/favicon.ico'
+
+ 		}
+ 		else{
+ 			img.src = 'https://i.loli.net/2019/03/01/5c7942239926f.jpg'
+ 		}
+ 		img.onerror = function(imgError){
+ 			imgError.target.src = 'https://i.loli.net/2019/03/01/5c7942239926f.jpg'
+ 		}
 	}
 
 	//使用localStorage来存储数据

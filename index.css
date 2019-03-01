@@ -5,25 +5,31 @@
 a{
 	text-decoration: none;
 }
+body{
+	background: url(wall.jpg) no-repeat center center;
+	/*两个center意思是水平和垂直方向上居中*/
+	background-size: cover;
+}
 main{
 	text-align: center;
+	height: 100vh;
+	background-color: rgba(255,255,255,0.3);
 }
 #mainxxxx{
+	margin-top:100px;
 	display: inline-block;
 	vertical-align: center;
+	margin-top: 450px;
 }
 #mainxxxx > div kbd{
-	border: 1px solid black;
-	height: 50px;
-	width: 50px;
-	display: inline-block;
+	
 	text-transform: uppercase;
 }
 #mainxxxx>div:nth-child(2){
-	margin-left: 1em;
+	margin-left: -31px;
 }
 #mainxxxx>div:nth-child(3){
-	margin-left: 3em;
+	margin-left: -108px;
 }
 #mainxxxx>div kbd button{
 	position: absolute;
@@ -37,4 +43,33 @@ main{
 }
 #mainxxxx>div kbd:hover button{
 	display: inline-block;
+}
+.key{
+	width: 56px;
+    height: 56px;
+	background: linear-gradient(to bottom, rgba(15,14,13,1) 0%, rgba(34,33,32,1) 100%);
+	border: 1px solid #6b686e;
+	color: #ffffff;
+	border-radius: 7px;
+	font-size:24px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.67),0px 0px 0px 1px #1a1b1c,0px 0px 0px 1px #151d30,0px 2px 0px 0px black;
+}
+.row{
+	margin-bottom: 10px;
+}
+.row .key{
+	margin-left: 10px;
+}
+div kbd{
+	position: relative;
+}
+div kbd img{
+	position: absolute;
+	height: 20px;
+	width: 20px;
+	bottom: 0;
+	left: 0;
 }
