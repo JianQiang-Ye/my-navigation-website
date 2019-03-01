@@ -31,17 +31,22 @@ main{
 #mainxxxx>div:nth-child(3){
 	margin-left: -108px;
 }
-#mainxxxx>div kbd button{
+#mainxxxx>div kbd i{
 	position: absolute;
 	right: 0;
 	bottom: 0;
 	font-size: 12px;
 	display: none;
+	background-color: black;
+	color: white;
+	border:none;
+	height: 18px;
+	width: 18px;
 }
 #mainxxxx>div kbd{
 	position: relative;
 }
-#mainxxxx>div kbd:hover button{
+#mainxxxx>div kbd:hover i{
 	display: inline-block;
 }
 .key{

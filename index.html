@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>我的导航</title>
 	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="font-awesome.min.css">
 </head>
 <body>
 	<header></header>
@@ -19,7 +20,18 @@
 	 	'2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
 	 	'length': 3
 	}
-	var hash = {'a': 'acfun.cn','q': 'qq.com', 'w': 'weibo.com', 't': 'taobao.com', 'b': 'bilibili.com', 'z': 'zhihu.com', 'h': 'hupu.com','d': 'douban.com','y': 'youtube.com','j': 'jianshu.com','length': 26 }
+	var hash = {
+		'a': 'acfun.cn',
+		'q': 'qq.com', 
+		'w': 'weibo.com', 
+		't': 'taobao.com', 
+		'b': 'bilibili.com', 
+		'z': 'zhihu.com', 
+		'h': 'hupu.com',
+		'd': 'douban.com',
+		'j': 'jianshu.com',
+		'y': 'youtube.com',
+		'length': 26 }
 	//取出localStorage中的uuu对应的hash
 	var hashInLocalStorage = JSON.parse(localStorage.getItem('uuu') || 'null')
 	if(hashInLocalStorage){
@@ -40,9 +52,11 @@
 	 		div1.appendChild(kbd);//生成kbd之后马上放到div里面去
 	 		kbd.className = 'key'; //给每一个kbd增加一个class
 
-	 		var buttonX = document.createElement('button')//生成一个button
+	 		var buttonX = document.createElement('i')//生成一个button
 	 		kbd.appendChild(buttonX)//每个kbd里面都有一个button
-	 		buttonX.textContent = '编辑'
+	 		
+	 		buttonX.className = 'fa fa-cog fa-fw'
+	 		
 	 		buttonX.id =  row[index2]//给每个button都起一个对应的id
 	 		buttonX.onclick = function(clickEvent){//点击对应的编辑按钮就可以编辑对应的网址,clickevent是可以随便取的名字
 	 			webside = prompt('请输入一个网址')
@@ -51,7 +65,8 @@
 	 			hash[buttonID] = webside//修改对应button的id的哈希表
 	 			localStorage.setItem('uuu',JSON.stringify(hash))//uuu是随便取的名字，它只能存字符串，因此要把hash转换为字符串
 
-	 			var img = clickEvent.target.nextSibling	 
+	 			var img = clickEvent.target.nextSibling	
+	 			console.log(img) 
 	 			if(hash[buttonID]){
 	 				img.src = 'http://' + hash[buttonID] + '/favicon.ico'
 	 			}else{
@@ -82,7 +97,8 @@
 		var img = document.createElement('img')
  		kbd.appendChild(img)
  		var key = hashKey
- 		var website = hash[key]		
+ 		var website = hash[key]
+ 		console.log(website)		
  		if(website){
  			img.src = 'http://' + website + '/favicon.ico'
 
